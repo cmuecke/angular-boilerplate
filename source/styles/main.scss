@@ -1,0 +1,88 @@
+// Webfont
+@import url("http://fonts.googleapis.com/css?family=Martel:400,300,600,700,800");
+
+@import '_variables';
+@import '_mixins';
+
+//
+// Modules
+@import '_modules/_normalize';
+@import '_modules/_base';
+@import '_modules/_typography';
+@import '_modules/_forms';
+@import '_modules/_utilities';
+
+body {}
+
+// @include clearfix();
+
+header {
+  background-color: $base-ui-color;
+  color: white;
+  @include clearfix();
+
+  @media screen and (max-width: ($medium-screen - 1)) {
+    padding: 8em $small-screen-column-margin 0;
+  }
+
+  h1 {
+    color: white;
+    margin-bottom: .3em;
+  }
+}
+
+.main {
+  position: relative;
+  margin: 0 auto;
+  min-width: $min-content-width;
+  padding-bottom: 5em;
+  @include clearfix();
+}
+
+.column {
+  padding-top: 1.5em;
+
+  @media screen and (max-width: ($medium-screen - 1)) {
+    padding-left: $small-screen-column-margin;
+    padding-right: $small-screen-column-margin;
+  }
+
+  @media screen and (min-width: $medium-screen) {
+    padding-left: ((2 * $gutted-column) + $grid-gutter);
+    padding-right: ((2 * $gutted-column) + $grid-gutter);
+  }
+}
+
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+.screenshot {
+  @media screen and (min-width: $medium-screen) {
+    //width: 75%;
+    //margin-left: -(((2 * $gutted-column) + (2 * $grid-gutter)) * (100 / strip-units(100% - ((2 * $gutted-column) + (2 * $grid-gutter)))));
+  }
+}
+
+.ci {
+  text-align: center;
+
+  h1 {
+    margin-bottom: .1em;
+  }
+}
+
+#try-out {
+  padding: 2.5em;
+  background-color: $base-font-color;
+  background-position: 50%;
+  color: #fefefe;
+  text-align: center;
+}
+
+.pull-fw-small-screen {
+  @media screen and (max-width: ($medium-screen - 1)) {
+      margin-left: -$small-screen-column-margin;
+      margin-right: -$small-screen-column-margin;
+    }
+}

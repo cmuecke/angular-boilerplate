@@ -1,0 +1,57 @@
+<section>
+  <ul class="nav nav-pills">
+    <li ng-class="{ active:tabs.activeTab(1) }">
+      <a href ng-click="tabs.selectTab(1)">Description</a>
+    </li>
+    <li ng-class="{ active:tabs.activeTab(2) }">
+      <a href ng-click="tabs.selectTab(2)">Specs</a>
+    </li>
+    <li ng-class="{ active:tabs.activeTab(3) }">
+      <a href ng-click="tabs.selectTab(3)">Review</a>
+    </li>
+  </ul>
+
+  <div class="panel" ng-show="tabs.activeTab(1)">
+    <h4>Description</h4>
+    <p>{{product.description}}</p>
+  </div>
+
+  <div class="panel" ng-show="tabs.activeTab(2)">
+    <h4>Specs</h4>
+    <p>...</p>
+  </div>
+
+  <div class="panel" ng-show="tabs.activeTab(3)">
+    <h4>Reviews</h4>
+    <blockquote ng-repeat="review in product.reviews">
+      <b>Stars: {{review.stars}}</b>
+      <p>{{review.content}}</p>
+      <cite>{{review.author}}</cite>
+    </blockquote>
+
+    <form name="reviewForm"
+    ng-controller="reviewController as reviewCtrl"
+    ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)"
+    novalidate>
+      <blockquote>
+        <b ng-show="reviewCtrl.review.stars.length">Stars: {{reviewCtrl.review.stars}}</b>
+        <p>{{reviewCtrl.review.content}}</p>
+        <cite>{{reviewCtrl.review.author}}</cite>
+      </blockquote>
+      <select class="form-control" ng-model="reviewCtrl.review.stars" required>
+        <option value="1">1 star</option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+      </select>
+      <textarea class="form-control" ng-model="reviewCtrl.review.content" required></textarea>
+      <label>by:
+        <input class="form-control" ng-model="reviewCtrl.review.author" type="email" required />
+      </label>
+      <input class="btn btn-primary" type="submit" value="submit" />
+      <h4>reviewform is {{reviewForm.$valid}}</h4>
+    </form>
+  </div>
+
+  <button class="btn btn-primary btn-block" ng-show="product.purchaseable">Add to cart</button>
+
+</section>

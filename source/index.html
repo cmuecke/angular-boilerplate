@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="store">
+  <head>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+    <style type="text/css">
+    .ng-invalid.ng-dirty {border-color: red;}
+    .ng-valid.ng-dirty {border-color: green;}
+    </style>
+  </head>
+  <body ng-controller="StoreController as controllerAlias">
+    <div class="container"
+      <div
+      ng-hide="controllerAlias.product.soldOut"
+      ng-repeat="product in controllerAlias.products">
+
+        <product-title></product-title>
+
+        <img ng-show="product.images.length" ng-src="{{product.images[0].small}}" />
+
+        <h3 class="pull-right">{{product.price | currency : '' }} €</h3>
+
+        <product-panels></product-panels>
+
+      </div>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/at.js"></script>
+  </body>
+</html>
